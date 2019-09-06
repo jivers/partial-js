@@ -1,0 +1,22 @@
+{
+  "name": "partial-js",
+  "version": "1.0.0",
+  "description": "Helper function for creating and manipulating partials with a focus on musical applications",
+  "main": "Partial.js",
+  "scripts": {
+    "test": "ava --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jivers/partial-js.git"
+  },
+  "author": "John Ivers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jivers/partial-js/issues"
+  },
+  "homepage": "https://github.com/jivers/partial-js#readme",
+  "devDependencies": {
+    "ava": "^2.3.0"
+  }
+}
