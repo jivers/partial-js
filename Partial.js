@@ -1,12 +1,20 @@
 const mult = (...numbers) => numbers.reduce((res, val) => res * val);
 
+const targetOctaveAbove = (freq, targetFreq, offset=1) => {
+    return (freq > (targetFreq * offset)) ? freq : targetOctaveAbove(freq * 2, targetFreq, offset);
+};
+
+const targetOctaveBelow = (freq, targetFreq, offset=1) => {
+    return (freq < (targetFreq * offset)) ? freq : targetOctaveBelow(freq / 2, targetFreq, offset);
+};
+
 const Partial = (hz, harm = 1, fund = null) => {
     const frequency = hz;
     const harmonic = harm;
 
-    const fundamental = (!fund)
-        ? hz / harm
-        : fund;
+    const fundamental = (fund)
+        ? fund
+        : hz / harm;
     
     return {
         frequency() {
@@ -19,9 +27,7 @@ const Partial = (hz, harm = 1, fund = null) => {
 
         fundamental: function () {
             return Partial(
-                fundamental,
-                1,
-                Partial(fundamental)
+                fundamental
             )
         },
 
@@ -46,6 +52,32 @@ const Partial = (hz, harm = 1, fund = null) => {
                 harmonic,
                 fundamental
             )
+        },
+
+        closestAbove: function (targetPartial) {
+            let targetFreq = targetPartial.frequency();
+            return (targetFreq >= frequency) 
+                ? Partial(
+                    targetOctaveAbove(frequency, targetFreq),
+                    harmonic,
+                    fundamental )
+                : Partial(
+                    targetOctaveBelow(frequency, targetFreq, 2),
+                    harmonic,
+                    fundamental);
+        },
+
+        closestBelow: function (targetPartial) {
+            let targetFreq = targetPartial.frequency();
+            return (targetFreq >= frequency) 
+                ? Partial(
+                    targetOctaveAbove(frequency, targetFreq, 0.5),
+                    harmonic,
+                    fundamental )
+                : Partial(
+                    targetOctaveBelow(frequency, targetFreq),
+                    harmonic,
+                    fundamental);
         }
     };
 };

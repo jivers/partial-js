@@ -50,3 +50,14 @@ test('.partial()', t => {
     t.is(partial.partial(1, 1).harmonic(), partial.harmonic(), "Derived partial (1, 1) harmonic is not original * 1");
     t.is(partial.partial(3, 3).harmonic(), partial.harmonic() * 9, "Derived partial (3, 3) harmonic is not origianl * 9");
 });
+
+test('.closestAbove()', t => {
+    t.is(partial.partial(3).closestAbove(partial).frequency(), 165, "Closest frequency below target is incorrect");
+    t.is(partial.partial(5).closestAbove(partial).frequency(), 137.5, "Closest frequency below target is incorrect");
+});
+
+test('.closestBelow()', t => {
+    t.is(partial.partial(3).closestBelow(partial).frequency(), 82.5, "Closest frequency below target is incorrect");
+    t.is(partial.partial(5).closestBelow(partial).frequency(), 68.75, "Closest frequency below target is incorrect");
+    t.is(partial.partial(4).closestBelow(partial).frequency(), 55, "Closest frequency below target is incorrect");
+});
