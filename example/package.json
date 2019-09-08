@@ -1,0 +1,20 @@
+{
+  "name": "partial-js-wav-example",
+  "version": "1.0.0",
+  "description": "Generating harmonies using partial-js and writing to .wav file",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "John Ivers",
+  "license": "ISC",
+  "dependencies": {
+    "wav-encoder": "^1.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/node": "^7.6.1",
+    "@babel/preset-env": "^7.6.0"
+  }
+}
